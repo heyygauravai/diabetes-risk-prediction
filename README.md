@@ -23,6 +23,15 @@ available at any clinic.
 2. **EDA:** Analyzed distributions and correlations between diabetic and non-diabetic patients
 3. **Modeling:** Trained and compared Logistic Regression, Random Forest, and XGBoost
 4. **Evaluation:** Cross-validation, confusion matrix, and classification report
+   
+## Key Challenge: Biologically Impossible Zeros
+
+This dataset uses `0` to represent missing values in 5 columns (Glucose, BloodPressure, 
+SkinThickness, Insulin, BMI). A human cannot have `Glucose = 0` and survive.
+
+**My approach:** Instead of dropping 48% of rows (374/768 had `Insulin = 0`), 
+I calculated the median using **only non-zero values** and imputed. This preserved 
+dataset size while avoiding the bias that `mean` would introduce from outliers.  
 
 ## Results
 | Model | Accuracy | CV Score |
